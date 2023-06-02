@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:portfolio_flutter/src/utils/src/helpers/ui_dimens.dart';
 
 class ProjectsDemo extends HookConsumerWidget {
   const ProjectsDemo({Key? key}) : super(key: key);
@@ -7,7 +9,13 @@ class ProjectsDemo extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       children: [
-        Text("Projects"),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            "Projects",
+            style: GoogleFonts.openSans(fontSize: 40, color: Colors.orange),
+          ),
+        ),
         GridView.builder(
           padding: const EdgeInsets.all(10),
           physics: NeverScrollableScrollPhysics(),
@@ -20,9 +28,9 @@ class ProjectsDemo extends HookConsumerWidget {
               crossAxisSpacing: 10,
               mainAxisSpacing: 10),
           itemBuilder: (context, index) => Container(
-            width: 400,
-            height: 300,
-            color: Colors.red,
+            width: 100,
+            height: 100,
+            color: Colors.white,
           ),
         ),
       ],

@@ -1,10 +1,18 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lottie/lottie.dart';
+import 'package:portfolio_flutter/src/features/home/presentation/widgets/contact_page.dart';
+
 import 'package:portfolio_flutter/src/features/home/presentation/widgets/skills_grid.dart';
 import 'package:portfolio_flutter/src/utils/src/helpers/ui_dimens.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-import '../../home/projects.dart';
+import '../../home/presentation/widgets/projects_single.dart';
+import '../../home/presentation/widgets/simple_dialog.dart';
 
 // import '../../home/presentation/widgets/animatedrail.dart';
 
@@ -18,47 +26,93 @@ class WebScreenlayout extends StatefulHookConsumerWidget {
       _WebScreenlayoutState();
 }
 
-// const List<Tab> tabs = <Tab>[
-//   Tab(text: 'Zeroth'),
-//   Tab(text: 'First'),
-//   Tab(text: 'Second'),
-// ];
-
 class _WebScreenlayoutState extends ConsumerState<WebScreenlayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xff171717),
       appBar: AppBar(
+        backgroundColor: const Color(0xff171717),
         automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               child: Text("M"),
               radius: 24,
             ),
             Row(
               children: [
-                TextButton.icon(
-                  icon: Icon(Icons.home),
-                  onPressed: () {},
-                  label: Text("Home"),
+                // Container(
+                //   child: Column(
+                //     children: [
+                //       TextButton(
+                //         // icon: Icon(
+                //         //   Icons.home,
+                //         //   color: Colors.orange,
+                //         // ),
+                //         onPressed: () {},
+                //         child: Text(
+                //           "Home",
+                //           style: GoogleFonts.openSans(color: Colors.white),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                IconButton(
+                  icon: const FaIcon(
+                    FontAwesomeIcons.github,
+                    color: Colors.white,
+                  ),
+                  onPressed: () async {
+                    final String url =
+                        "https://github.com/agiratech-madhan?tab=repositories";
+
+                    await launchUrl(Uri.parse(url));
+                  },
                 ),
-                TextButton(
-                  onPressed: () {},
-                  child: Text("About"),
+                IconButton(
+                  icon: const FaIcon(
+                    FontAwesomeIcons.linkedin,
+                    color: Colors.white,
+                  ),
+                  onPressed: () async {
+                    await launchUrl(
+                      Uri.parse("https://www.linkedin.com/in/madhan-k-/"),
+                    );
+                  },
                 ),
-                TextButton(
-                  onPressed: () {},
-                  child: Text("Skills"),
+                IconButton(
+                  icon: const Icon(
+                    Icons.email_outlined,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    String? encodeQueryParameters(Map<String, String> params) {
+                      return params.entries
+                          .map((MapEntry<String, String> e) =>
+                              '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+                          .join('&');
+                    }
+
+                    final Uri emailLaunchUri = Uri(
+                      scheme: 'mailto',
+                      path: 'madhan.k@agiratech.com',
+                      query: encodeQueryParameters(<String, String>{
+                        'subject': 'Example Subject & Symbols are allowed!',
+                      }),
+                    );
+
+                    launchUrl(emailLaunchUri);
+                  },
                 ),
-                TextButton(
+                IconButton(
+                  icon: const FaIcon(
+                    FontAwesomeIcons.instagram,
+                    color: Colors.white,
+                  ),
                   onPressed: () {},
-                  child: Text("Project"),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Text("Contact"),
                 ),
               ],
             ),
@@ -67,37 +121,58 @@ class _WebScreenlayoutState extends ConsumerState<WebScreenlayout> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              width: context.screenWidth,
-              decoration: BoxDecoration(
+              // width: context.screenWidth * 0.8,
+              decoration: const BoxDecoration(
                   // color: Colors.grey.withOpacity(
                   //   0.3,
                   // ),
                   ),
               height: context.screenHeight * 0.3,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 // crossAxisAlignment: CrossAxisAlignment.start,
                 // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Expanded(
+                  Flexible(
                     child: Column(
-                      // crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      // mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        // Text(
+                        //   textAlign: TextAlign.center,
+                        //   "  Flutter  developer ",
+                        //   style: GoogleFonts.openSans(
+                        //     fontSize: 20,
+                        //     color: Colors.grey.withOpacity(0.5),
+                        //   ),
+                        // ),
+                        RichText(
+                            text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "Hi, I'm",
+                              style: GoogleFonts.openSans(
+                                  fontSize: 40, color: Colors.white),
+                            ),
+                            TextSpan(
+                              text: " MADHAN",
+                              style: GoogleFonts.openSans(
+                                  fontSize: 40, color: Colors.orange),
+                            )
+                          ],
+                        )),
+                        Text("A Flutter Developer",
+                            style: GoogleFonts.openSans(
+                                fontSize: 16, color: Colors.grey)),
                         Text(
                           textAlign: TextAlign.center,
-                          "  Hi, I'm Madhan ",
-                          style: TextStyle(fontSize: 40),
+                          "I am a mobile application developer who creates cross-platform mobile applications. I desire to create products that people love to use.",
+                          style: GoogleFonts.openSans(
+                              fontSize: 20, color: Colors.grey),
                         ),
-                        Text(
-                          textAlign: TextAlign.center,
-                          "  Flutter  developer ",
-                          style: TextStyle(fontSize: 23),
-                        ),
-                        Text(
-                            textAlign: TextAlign.center,
-                            " I am passionate about Flutter because it allows me to create beautiful, high-performance mobile apps that are both user-friendly and visually appealing."),
                       ],
                     ),
                   ),
@@ -110,62 +185,151 @@ class _WebScreenlayoutState extends ConsumerState<WebScreenlayout> {
                 ],
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircleAvatar(
-                  radius: 20,
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: FaIcon(
-                        FontAwesomeIcons.github,
-                        color: Colors.grey,
-                      )),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                CircleAvatar(
-                  radius: 20,
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: FaIcon(
-                        FontAwesomeIcons.linkedin,
-                        color: Colors.grey,
-                      )),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                CircleAvatar(
-                  radius: 20,
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.email_outlined,
-                        color: Colors.grey,
-                      )),
-                )
-              ],
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            // CircleAvatar(
+            //   radius: 20,
+            //   child: IconButton(
+            //       onPressed: () {},
+            //       icon: FaIcon(
+            //         FontAwesomeIcons.github,
+            //         color: Colors.grey,
+            //       )),
+            // ),
+            //     SizedBox(
+            //       width: 20,
+            //     ),
+            //     CircleAvatar(
+            //       radius: 20,
+            //       child: IconButton(
+            //           onPressed: () {},
+            // icon: FaIcon(
+            //   FontAwesomeIcons.linkedin,
+            //   color: Colors.grey,
+            // )),
+            //     ),
+            //     SizedBox(
+            //       width: 20,
+            //     ),
+            //     CircleAvatar(
+            //       radius: 20,
+            //       child: IconButton(
+            //           onPressed: () {},
+            //           icon: Icon(
+            //             Icons.email_outlined,
+            //             color: Colors.grey,
+            //           )),
+            //     )
+            //   ],
+            // ),
             Container(
               alignment: Alignment.center,
               constraints: BoxConstraints(
-                  maxWidth: context.screenWidth * 0.7,
+                  maxWidth: context.screenWidth * 0.72,
                   minWidth: context.screenWidth * 0.4),
               // width: 800,
 
-              child: SkillGridView(),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Row(
+                  children: [
+                    Flexible(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "About me",
+                            style: GoogleFonts.openSans(
+                                fontSize: 40, color: Colors.orange),
+                          ),
+                          const SizedBox(
+                            height: 40,
+                          ),
+                          Text(
+                            "  I am a passionate Flutter developer who thrives on coding and continuously updating my skills. With a deep love for problem-solving, I am driven to achieve challenging targets , I am excited about the future possibilities in mobile app development",
+                            softWrap: true,
+                            textAlign: TextAlign.justify,
+                            // maxLines: 2,
+                            style: GoogleFonts.openSans(
+                                fontSize: 22, color: Colors.grey),
+                          ),
+                        ],
+                      ).paddingAll(15),
+                    ),
+                    SizedBox(
+                      width: context.screenWidth * 0.02,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: const [
+                          BoxShadow(
+                            blurRadius: 8,
+                            color: Colors.orange,
+                            offset: Offset(0, 2),
+                          )
+                        ],
+                      ),
+                      // margin:
+                      //     EdgeInsets.only(right: context.screenWidth * 0.078),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                            width: 400,
+                            height: 300,
+                            fit: BoxFit.fill,
+                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5hgepNPAzZM3e0ISUFWZ1UFcX5DrMxGCSQpM03MLe9Z-jHqh3R11ErjcEG9p9Yogq8Rs&usqp=CAU"),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            Container(
-              alignment: Alignment.center,
-              constraints: BoxConstraints(
-                  maxWidth: context.screenWidth * 0.7,
-                  minWidth: context.screenWidth * 0.4),
-              // width: 800,
+            Align(
+              // alignment: Alignment.centerLeft,
+              child: Container(
+                // alignment: Alignment.centerLeft,
+                constraints: BoxConstraints(
+                    maxWidth: context.screenWidth * 0.9,
+                    minWidth: context.screenWidth * 0.4),
+                // width: 800,
 
-              child: ProjectsDemo(),
+                child: const SkillGridView(),
+              ),
+            ).paddingAll(20),
+            Align(
+              // alignment: Alignment.centerLeft,
+              child: Container(
+                // alignment: Alignment.center,
+                constraints: BoxConstraints(
+                    maxWidth: context.screenWidth * 0.72,
+                    minWidth: context.screenWidth * 0.4),
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Projects",
+                        style: GoogleFonts.openSans(
+                            fontSize: 40, color: Colors.orange),
+                      ),
+                    ).paddingAll(10),
+                    const Wrap(
+                      children: [
+                        InstaProject(),
+                        TodoProject(),
+                        ThaiProject(),
+                        // const SwiperProject(),
+                        BitstampProject()
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
+
+            ContactSection()
           ],
         ),
       ),

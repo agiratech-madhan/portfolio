@@ -15,12 +15,12 @@ class AppTheme {
     ),
     // scaffoldBackgroundColor: const Color(0xffF5F5F5),
     // cardColor: Colors.white,
-    appBarTheme: const AppBarTheme(
-      color: Colors.white,
-      iconTheme: IconThemeData(
-        color: Colors.white,
-      ),
-    ),
+    // appBarTheme: const AppBarTheme(
+    //   color: Colors.white,
+    //   iconTheme: IconThemeData(
+    //     color: Colors.white,
+    //   ),
+    // ),
     textTheme: const TextTheme(
       displayMedium: TextStyle(
           fontSize: 40, fontWeight: FontWeight.normal, color: Colors.black),
