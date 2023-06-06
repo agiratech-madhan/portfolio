@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:portfolio_flutter/src/features/home/presentation/widgets/carousel.dart';
@@ -22,12 +23,14 @@ class SimpleDialogWidget extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SimpleDialog(
       children: [
-        SizedBox(
+        Container(
             width: context.screenWidth * 0.5,
-            height: context.screenHeight * 0.9,
+            constraints: BoxConstraints(maxHeight: context.screenHeight * 0.9),
+            // height: context.screenHeight * 0.9,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // Align(alignment: Alignment.topRight, child: FaIcon(FontAwesomeIcons.stickerMule),),
                 Align(
                   alignment: Alignment.topCenter,
                   child: Text(

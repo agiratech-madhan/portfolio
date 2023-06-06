@@ -55,233 +55,471 @@ class ContactSection extends HookConsumerWidget {
           ],
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: Colors.orange)),
-      child: Row(
-        // mainAxisSize: MainAxisSize.min,
-        children: [
-          Column(
-            // crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    "Lets Built Something better",
-                    style:
-                        GoogleFonts.openSans(fontSize: 20, color: Colors.white),
-                  ),
-                  Text(
-                    "Together",
-                    style:
-                        GoogleFonts.openSans(fontSize: 20, color: Colors.white),
-                  ),
-                ],
-              ),
-              Container(
-                  width: 500,
-                  // height: 600,
-                  child: Lottie.asset('assets/json/data.json')),
-              Text(
-                "K.Madhan",
-                style: GoogleFonts.openSans(fontSize: 20, color: Colors.white),
-              ),
-              Text(
-                "A Flutter Developer",
-                style: GoogleFonts.openSans(fontSize: 20, color: Colors.white),
-              ),
-              Row(
-                children: [
-                  // Container(
-                  //   child: Column(
-                  //     children: [
-                  //       TextButton(
-                  //         // icon: Icon(
-                  //         //   Icons.home,
-                  //         //   color: Colors.orange,
-                  //         // ),
-                  //         onPressed: () {},
-                  //         child: Text(
-                  //           "Home",
-                  //           style: GoogleFonts.openSans(color: Colors.white),
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                  IconButton(
-                    icon: const FaIcon(
-                      FontAwesomeIcons.github,
-                      color: Colors.white,
+      child: context.screenWidth > 600
+          ? Row(
+              // mainAxisSize: MainAxisSize.min,
+              children: [
+                Column(
+                  // crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Lets Built Something better",
+                          style: GoogleFonts.openSans(
+                              fontSize: 20, color: Colors.white),
+                        ),
+                        Text(
+                          "Together",
+                          style: GoogleFonts.openSans(
+                              fontSize: 20, color: Colors.white),
+                        ),
+                      ],
                     ),
-                    onPressed: () async {
-                      final String url =
-                          "https://github.com/agiratech-madhan?tab=repositories";
-
-                      await launchUrl(Uri.parse(url));
-                    },
-                  ),
-                  IconButton(
-                    icon: const FaIcon(
-                      FontAwesomeIcons.linkedin,
-                      color: Colors.white,
-                    ),
-                    onPressed: () async {
-                      await launchUrl(
-                        Uri.parse("https://www.linkedin.com/in/madhan-k-/"),
-                      );
-                    },
-                  ),
-                  IconButton(
-                    icon: const Icon(
-                      Icons.email_outlined,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {
-                      String? encodeQueryParameters(
-                          Map<String, String> params) {
-                        return params.entries
-                            .map((MapEntry<String, String> e) =>
-                                '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
-                            .join('&');
-                      }
-
-                      final Uri emailLaunchUri = Uri(
-                        scheme: 'mailto',
-                        path: 'madhan.k@agiratech.com',
-                        query: encodeQueryParameters(<String, String>{
-                          'subject': 'Example Subject & Symbols are allowed!',
-                        }),
-                      );
-
-                      launchUrl(emailLaunchUri);
-                    },
-                  ),
-                  IconButton(
-                    icon: const FaIcon(
-                      FontAwesomeIcons.instagram,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {},
-                  ),
-                ],
-              ),
-            ],
-          ),
-          Form(
-            key: _formKey,
-            child: Column(children: [
-              Row(
-                children: [
-                  Container(
-                    width: 340,
-                    margin: EdgeInsets.only(top: 30),
-                    child: TextFormField(
-                      controller: nameController,
-                      textDirection: TextDirection.ltr,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return '*Required';
-                        }
-                        return null;
-                      },
-                      keyboardType: TextInputType.name,
+                    Container(
+                        width: 500,
+                        // height: 600,
+                        child: Lottie.asset('assets/json/data.json')),
+                    Text(
+                      "K.Madhan",
                       style: GoogleFonts.openSans(
-                          color: Colors.white, fontSize: 17),
-                      decoration: commonDecoration("Enter your Name "),
+                          fontSize: 20, color: Colors.white),
                     ),
-                  ),
-                  Container(
-                      width: 340,
-                      margin: EdgeInsets.only(top: 30, left: 30),
+                    Text(
+                      "A Flutter Developer",
+                      style: GoogleFonts.openSans(
+                          fontSize: 20, color: Colors.white),
+                    ),
+                    Row(
+                      children: [
+                        // Container(
+                        //   child: Column(
+                        //     children: [
+                        //       TextButton(
+                        //         // icon: Icon(
+                        //         //   Icons.home,
+                        //         //   color: Colors.orange,
+                        //         // ),
+                        //         onPressed: () {},
+                        //         child: Text(
+                        //           "Home",
+                        //           style: GoogleFonts.openSans(color: Colors.white),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
+                        IconButton(
+                          icon: const FaIcon(
+                            FontAwesomeIcons.github,
+                            color: Colors.white,
+                          ),
+                          onPressed: () async {
+                            final String url =
+                                "https://github.com/agiratech-madhan?tab=repositories";
+
+                            await launchUrl(Uri.parse(url));
+                          },
+                        ),
+                        IconButton(
+                          icon: const FaIcon(
+                            FontAwesomeIcons.linkedin,
+                            color: Colors.white,
+                          ),
+                          onPressed: () async {
+                            await launchUrl(
+                              Uri.parse(
+                                  "https://www.linkedin.com/in/madhan-k-/"),
+                            );
+                          },
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.email_outlined,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            String? encodeQueryParameters(
+                                Map<String, String> params) {
+                              return params.entries
+                                  .map((MapEntry<String, String> e) =>
+                                      '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+                                  .join('&');
+                            }
+
+                            final Uri emailLaunchUri = Uri(
+                              scheme: 'mailto',
+                              path: 'madhan.k@agiratech.com',
+                              query: encodeQueryParameters(<String, String>{
+                                'subject':
+                                    'Example Subject & Symbols are allowed!',
+                              }),
+                            );
+
+                            launchUrl(emailLaunchUri);
+                          },
+                        ),
+                        IconButton(
+                          icon: const FaIcon(
+                            FontAwesomeIcons.instagram,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Form(
+                  key: _formKey,
+                  child: Column(children: [
+                    Row(
+                      children: [
+                        Container(
+                          width: 340,
+                          margin: EdgeInsets.only(top: 30),
+                          child: TextFormField(
+                            controller: nameController,
+                            textDirection: TextDirection.ltr,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return '*Required';
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.name,
+                            style: GoogleFonts.openSans(
+                                color: Colors.white, fontSize: 17),
+                            decoration: commonDecoration("Enter your Name "),
+                          ),
+                        ),
+                        Container(
+                            width: 340,
+                            margin: EdgeInsets.only(top: 30, left: 30),
+                            child: TextFormField(
+                              style: GoogleFonts.openSans(
+                                  color: Colors.white, fontSize: 17),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return '*Required';
+                                }
+                                return null;
+                              },
+                              controller: phoneNumberController,
+                              decoration: commonDecoration("Phone Number"),
+                            )),
+                      ],
+                    ),
+                    Container(
+                        margin: EdgeInsets.only(top: 30),
+                        width: 710,
+                        child: TextFormField(
+                          style: GoogleFonts.openSans(
+                              color: Colors.white, fontSize: 17),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return '*Required';
+                            }
+                            return null;
+                          },
+                          controller: emailController,
+                          decoration: commonDecoration("Enter your Email"),
+                        )),
+                    Container(
+                        width: 710,
+                        margin: EdgeInsets.only(top: 30),
+                        child: TextFormField(
+                          style: GoogleFonts.openSans(
+                              color: Colors.white, fontSize: 17),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return '*Required';
+                            }
+                            return null;
+                          },
+                          controller: subjectController,
+                          decoration: commonDecoration("Subject"),
+                        )),
+                    Container(
+                        width: 710,
+                        margin: EdgeInsets.only(top: 30, bottom: 20),
+                        child: TextFormField(
+                          style: GoogleFonts.openSans(
+                              color: Colors.white, fontSize: 17),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return '*Required';
+                            }
+                            return null;
+                          },
+                          maxLines: 5,
+                          controller: messageController,
+                          decoration: commonDecoration("Message"),
+                        )),
+                    Container(
+                        width: 710,
+                        height: 50,
+                        margin: EdgeInsets.only(top: 30, bottom: 20),
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.orange,
+                                foregroundColor: Colors.black),
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                log("${nameController.text}"
+                                    "${emailController.text}"
+                                    "${messageController.text}");
+                                final values = await sendEmail(
+                                    nameController.text,
+                                    emailController.text,
+                                    messageController.text);
+                                // //TODO: send email
+                                nameController.clear();
+                                emailController.clear();
+                                phoneNumberController.clear();
+                                messageController.clear();
+                                subjectController.clear();
+                                print(values);
+                              }
+                              // await FlutterEmailSender.send(emailData);
+                            },
+                            child: Text('Send Message'))),
+                  ]),
+                )
+              ],
+            )
+          : Column(
+              children: [
+                Column(
+                  // crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Lets Built Something better",
+                          style: GoogleFonts.openSans(
+                              fontSize: 20, color: Colors.white),
+                        ),
+                        Text(
+                          "Together",
+                          style: GoogleFonts.openSans(
+                              fontSize: 20, color: Colors.white),
+                        ),
+                      ],
+                    ),
+                    Container(
+                        width: 500,
+                        // height: 600,
+                        child: Lottie.asset('assets/json/data.json')),
+                    Text(
+                      "K.Madhan",
+                      style: GoogleFonts.openSans(
+                          fontSize: 20, color: Colors.white),
+                    ),
+                    Text(
+                      "A Flutter Developer",
+                      style: GoogleFonts.openSans(
+                          fontSize: 20, color: Colors.white),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // Container(
+                        //   child: Column(
+                        //     children: [
+                        //       TextButton(
+                        //         // icon: Icon(
+                        //         //   Icons.home,
+                        //         //   color: Colors.orange,
+                        //         // ),
+                        //         onPressed: () {},
+                        //         child: Text(
+                        //           "Home",
+                        //           style: GoogleFonts.openSans(color: Colors.white),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
+                        IconButton(
+                          icon: const FaIcon(
+                            FontAwesomeIcons.github,
+                            color: Colors.white,
+                          ),
+                          onPressed: () async {
+                            final String url =
+                                "https://github.com/agiratech-madhan?tab=repositories";
+
+                            await launchUrl(Uri.parse(url));
+                          },
+                        ),
+                        IconButton(
+                          icon: const FaIcon(
+                            FontAwesomeIcons.linkedin,
+                            color: Colors.white,
+                          ),
+                          onPressed: () async {
+                            await launchUrl(
+                              Uri.parse(
+                                  "https://www.linkedin.com/in/madhan-k-/"),
+                            );
+                          },
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.email_outlined,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            String? encodeQueryParameters(
+                                Map<String, String> params) {
+                              return params.entries
+                                  .map((MapEntry<String, String> e) =>
+                                      '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+                                  .join('&');
+                            }
+
+                            final Uri emailLaunchUri = Uri(
+                              scheme: 'mailto',
+                              path: 'madhan.k@agiratech.com',
+                              query: encodeQueryParameters(<String, String>{
+                                'subject':
+                                    'Example Subject & Symbols are allowed!',
+                              }),
+                            );
+
+                            launchUrl(emailLaunchUri);
+                          },
+                        ),
+                        IconButton(
+                          icon: const FaIcon(
+                            FontAwesomeIcons.instagram,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Form(
+                  key: _formKey,
+                  child: Column(children: [
+                    Container(
+                      width: 710,
+                      margin: EdgeInsets.only(top: 30),
                       child: TextFormField(
-                        style: GoogleFonts.openSans(
-                            color: Colors.white, fontSize: 17),
+                        controller: nameController,
+                        textDirection: TextDirection.ltr,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return '*Required';
                           }
                           return null;
                         },
-                        controller: phoneNumberController,
-                        decoration: commonDecoration("Phone Number"),
-                      )),
-                ],
-              ),
-              Container(
-                  margin: EdgeInsets.only(top: 30),
-                  width: 710,
-                  child: TextFormField(
-                    style:
-                        GoogleFonts.openSans(color: Colors.white, fontSize: 17),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return '*Required';
-                      }
-                      return null;
-                    },
-                    controller: emailController,
-                    decoration: commonDecoration("Enter your Email"),
-                  )),
-              Container(
-                  width: 710,
-                  margin: EdgeInsets.only(top: 30),
-                  child: TextFormField(
-                    style:
-                        GoogleFonts.openSans(color: Colors.white, fontSize: 17),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return '*Required';
-                      }
-                      return null;
-                    },
-                    controller: subjectController,
-                    decoration: commonDecoration("Subject"),
-                  )),
-              Container(
-                  width: 710,
-                  margin: EdgeInsets.only(top: 30, bottom: 20),
-                  child: TextFormField(
-                    style:
-                        GoogleFonts.openSans(color: Colors.white, fontSize: 17),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return '*Required';
-                      }
-                      return null;
-                    },
-                    maxLines: 5,
-                    controller: messageController,
-                    decoration: commonDecoration("Message"),
-                  )),
-              Container(
-                  width: 710,
-                  height: 50,
-                  margin: EdgeInsets.only(top: 30, bottom: 20),
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.orange,
-                          foregroundColor: Colors.black),
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          log("${nameController.text}"
-                              "${emailController.text}"
-                              "${messageController.text}");
-                          final values = await sendEmail(nameController.text,
-                              emailController.text, messageController.text);
-                          // //TODO: send email
-                          nameController.clear();
-                          emailController.clear();
-                          phoneNumberController.clear();
-                          messageController.clear();
-                          subjectController.clear();
-                          print(values);
-                        }
-                        // await FlutterEmailSender.send(emailData);
-                      },
-                      child: Text('Send Message'))),
-            ]),
-          )
-        ],
-      ),
+                        keyboardType: TextInputType.name,
+                        style: GoogleFonts.openSans(
+                            color: Colors.white, fontSize: 17),
+                        decoration: commonDecoration("Enter your Name "),
+                      ),
+                    ),
+                    Container(
+                        width: 710,
+                        margin: EdgeInsets.only(
+                          top: 30,
+                        ),
+                        child: TextFormField(
+                          style: GoogleFonts.openSans(
+                              color: Colors.white, fontSize: 17),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return '*Required';
+                            }
+                            return null;
+                          },
+                          controller: phoneNumberController,
+                          decoration: commonDecoration("Phone Number"),
+                        )),
+                    Container(
+                        margin: EdgeInsets.only(top: 30),
+                        width: 710,
+                        child: TextFormField(
+                          style: GoogleFonts.openSans(
+                              color: Colors.white, fontSize: 17),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return '*Required';
+                            }
+                            return null;
+                          },
+                          controller: emailController,
+                          decoration: commonDecoration("Enter your Email"),
+                        )),
+                    Container(
+                        width: 710,
+                        margin: EdgeInsets.only(top: 30),
+                        child: TextFormField(
+                          style: GoogleFonts.openSans(
+                              color: Colors.white, fontSize: 17),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return '*Required';
+                            }
+                            return null;
+                          },
+                          controller: subjectController,
+                          decoration: commonDecoration("Subject"),
+                        )),
+                    Container(
+                        width: 710,
+                        margin: EdgeInsets.only(top: 30, bottom: 20),
+                        child: TextFormField(
+                          style: GoogleFonts.openSans(
+                              color: Colors.white, fontSize: 17),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return '*Required';
+                            }
+                            return null;
+                          },
+                          maxLines: 5,
+                          controller: messageController,
+                          decoration: commonDecoration("Message"),
+                        )),
+                    Container(
+                        width: 710,
+                        height: 50,
+                        margin: EdgeInsets.only(top: 30, bottom: 20),
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.orange,
+                                foregroundColor: Colors.black),
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                log("${nameController.text}"
+                                    "${emailController.text}"
+                                    "${messageController.text}");
+                                final values = await sendEmail(
+                                    nameController.text,
+                                    emailController.text,
+                                    messageController.text);
+                                // //TODO: send email
+                                nameController.clear();
+                                emailController.clear();
+                                phoneNumberController.clear();
+                                messageController.clear();
+                                subjectController.clear();
+                                print(values);
+                              }
+                              // await FlutterEmailSender.send(emailData);
+                            },
+                            child: Text('Send Message'))),
+                  ]),
+                )
+              ],
+            ),
     );
   }
 }

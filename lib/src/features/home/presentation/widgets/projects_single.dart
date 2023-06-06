@@ -111,10 +111,7 @@ class InstaProject extends HookConsumerWidget {
                       child: const Text("More Info"))
                 ],
               ),
-            )
-                .animate()
-                .fadeIn(duration: 900.ms, delay: 300.ms)
-                .shimmer(blendMode: BlendMode.srcOver, color: Colors.white12),
+            ).animate().flip(),
           ),
       ],
     );
@@ -144,7 +141,6 @@ class TodoProject extends HookConsumerWidget {
             width: 300,
             margin: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-                // color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: const [
                   BoxShadow(
@@ -169,7 +165,7 @@ class TodoProject extends HookConsumerWidget {
               width: 300,
               margin: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Colors.grey,
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: const [
                   // BoxShadow(
@@ -284,7 +280,7 @@ class ThaiProject extends HookConsumerWidget {
               width: 300,
               margin: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Colors.grey,
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: const [
                   // BoxShadow(
@@ -397,7 +393,7 @@ class SwiperProject extends HookConsumerWidget {
               width: 300,
               margin: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Colors.grey,
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: const [
                   // BoxShadow(
@@ -508,7 +504,7 @@ class BitstampProject extends HookConsumerWidget {
               width: 300,
               margin: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Colors.grey,
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: const [
                   // BoxShadow(

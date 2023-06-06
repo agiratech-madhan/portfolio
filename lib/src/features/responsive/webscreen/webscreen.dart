@@ -29,6 +29,7 @@ class WebScreenlayout extends StatefulHookConsumerWidget {
 class _WebScreenlayoutState extends ConsumerState<WebScreenlayout> {
   @override
   Widget build(BuildContext context) {
+    print("screenHeight ${context.screenWidth}");
     return Scaffold(
       backgroundColor: const Color(0xff171717),
       appBar: AppBar(
@@ -130,52 +131,14 @@ class _WebScreenlayoutState extends ConsumerState<WebScreenlayout> {
                   //   0.3,
                   // ),
                   ),
+
               height: context.screenHeight * 0.3,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 // crossAxisAlignment: CrossAxisAlignment.start,
                 // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Flexible(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // Text(
-                        //   textAlign: TextAlign.center,
-                        //   "  Flutter  developer ",
-                        //   style: GoogleFonts.openSans(
-                        //     fontSize: 20,
-                        //     color: Colors.grey.withOpacity(0.5),
-                        //   ),
-                        // ),
-                        RichText(
-                            text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: "Hi, I'm",
-                              style: GoogleFonts.openSans(
-                                  fontSize: 40, color: Colors.white),
-                            ),
-                            TextSpan(
-                              text: " MADHAN",
-                              style: GoogleFonts.openSans(
-                                  fontSize: 40, color: Colors.orange),
-                            )
-                          ],
-                        )),
-                        Text("A Flutter Developer",
-                            style: GoogleFonts.openSans(
-                                fontSize: 16, color: Colors.grey)),
-                        Text(
-                          textAlign: TextAlign.center,
-                          "I am a mobile application developer who creates cross-platform mobile applications. I desire to create products that people love to use.",
-                          style: GoogleFonts.openSans(
-                              fontSize: 20, color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                  ),
+                  ABoutMeSection(),
 
                   // Container(
                   //     child: Image.network(
@@ -231,61 +194,88 @@ class _WebScreenlayoutState extends ConsumerState<WebScreenlayout> {
               // width: 800,
 
               child: Align(
-                alignment: Alignment.centerLeft,
-                child: Row(
-                  children: [
-                    Flexible(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "About me",
-                            style: GoogleFonts.openSans(
-                                fontSize: 40, color: Colors.orange),
-                          ),
-                          const SizedBox(
-                            height: 40,
-                          ),
-                          Text(
-                            "  I am a passionate Flutter developer who thrives on coding and continuously updating my skills. With a deep love for problem-solving, I am driven to achieve challenging targets , I am excited about the future possibilities in mobile app development",
-                            softWrap: true,
-                            textAlign: TextAlign.justify,
-                            // maxLines: 2,
-                            style: GoogleFonts.openSans(
-                                fontSize: 22, color: Colors.grey),
-                          ),
-                        ],
-                      ).paddingAll(15),
-                    ),
-                    SizedBox(
-                      width: context.screenWidth * 0.02,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: const [
-                          BoxShadow(
-                            blurRadius: 8,
-                            color: Colors.orange,
-                            offset: Offset(0, 2),
-                          )
-                        ],
+                  alignment: Alignment.centerLeft,
+                  child: Row(
+                    children: [
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "About me",
+                              style: GoogleFonts.openSans(
+                                  fontSize: 40, color: Colors.orange),
+                            ),
+                            const SizedBox(
+                              height: 40,
+                            ),
+                            Text(
+                              "  I am a passionate Flutter developer who thrives on coding and continuously updating my skills. With a deep love for problem-solving, I am driven to achieve challenging targets , I am excited about the future possibilities in mobile app development",
+                              softWrap: true,
+                              textAlign: TextAlign.justify,
+                              // maxLines: 2,
+                              style: GoogleFonts.openSans(
+                                  fontSize: 22, color: Colors.grey),
+                            ),
+                          ],
+                        ).paddingAll(15),
                       ),
-                      // margin:
-                      //     EdgeInsets.only(right: context.screenWidth * 0.078),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                            width: 400,
-                            height: 300,
-                            fit: BoxFit.fill,
-                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5hgepNPAzZM3e0ISUFWZ1UFcX5DrMxGCSQpM03MLe9Z-jHqh3R11ErjcEG9p9Yogq8Rs&usqp=CAU"),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+                      (context.screenWidth > 600)
+                          ? SizedBox(
+                              width: context.screenWidth * 0.02,
+                            )
+                          : SizedBox(),
+                      (context.screenWidth > 600)
+                          ? Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: const [
+                                  BoxShadow(
+                                    blurRadius: 8,
+                                    color: Colors.orange,
+                                    offset: Offset(0, 2),
+                                  )
+                                ],
+                              ),
+                              // margin:
+                              //     EdgeInsets.only(right: context.screenWidth * 0.078),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.network(
+                                    width: 300,
+                                    height: 200,
+                                    fit: BoxFit.fitWidth,
+                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5hgepNPAzZM3e0ISUFWZ1UFcX5DrMxGCSQpM03MLe9Z-jHqh3R11ErjcEG9p9Yogq8Rs&usqp=CAU"),
+                              ),
+                            )
+                          : SizedBox(),
+                    ],
+                  )),
             ),
+            (context.screenWidth < 600)
+                ? Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: const [
+                        BoxShadow(
+                          blurRadius: 8,
+                          color: Colors.orange,
+                          offset: Offset(0, 2),
+                        )
+                      ],
+                    ),
+                    // margin:
+                    //     EdgeInsets.only(right: context.screenWidth * 0.078),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(
+                          width: 300,
+                          height: 200,
+                          fit: BoxFit.fill,
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5hgepNPAzZM3e0ISUFWZ1UFcX5DrMxGCSQpM03MLe9Z-jHqh3R11ErjcEG9p9Yogq8Rs&usqp=CAU"),
+                    ),
+                  )
+                : SizedBox(),
             Align(
               // alignment: Alignment.centerLeft,
               child: Container(
@@ -332,6 +322,52 @@ class _WebScreenlayoutState extends ConsumerState<WebScreenlayout> {
             ContactSection()
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ABoutMeSection extends StatelessWidget {
+  const ABoutMeSection({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        // mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // Text(
+          //   textAlign: TextAlign.center,
+          //   "  Flutter  developer ",
+          //   style: GoogleFonts.openSans(
+          //     fontSize: 20,
+          //     color: Colors.grey.withOpacity(0.5),
+          //   ),
+          // ),
+          RichText(
+              text: TextSpan(
+            children: [
+              TextSpan(
+                text: "Hi, I'm",
+                style: GoogleFonts.openSans(fontSize: 40, color: Colors.white),
+              ),
+              TextSpan(
+                text: " MADHAN",
+                style: GoogleFonts.openSans(fontSize: 40, color: Colors.orange),
+              )
+            ],
+          )),
+          Text("A Flutter Developer",
+              style: GoogleFonts.openSans(fontSize: 16, color: Colors.grey)),
+          Text(
+            textAlign: TextAlign.center,
+            "I am a mobile application developer who creates cross-platform mobile applications. I desire to create products that people love to use.",
+            style: GoogleFonts.openSans(fontSize: 20, color: Colors.grey),
+          ),
+        ],
       ),
     );
   }
